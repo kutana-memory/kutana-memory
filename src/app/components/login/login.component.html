@@ -1,0 +1,32 @@
+<div class="container">
+
+  <img src="assets\undraw_moments_0y20.svg" >
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form action="#" class="sign-in-form">
+        <h2 class="title">Welcome</h2>
+        <div class="input-field">
+          <i class="fas fa-user cls"></i>
+          <input [(ngModel)]="email" type="text" placeholder="Email" />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock cls"></i>
+          <input [(ngModel)]="password" type="password" placeholder="Password" />
+        </div>
+        <input (click)="loginWithEmail()" type="submit" value="Login" class="btn solid" />
+        <p class="social-text">Or Sign in with</p>
+        <div class="social-media">
+          <a href="#" class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-microsoft"></i>
+          </a>
+          <a (click)="loginWithGoogle()" class="social-icon">
+            <i class="fab fa-google"></i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

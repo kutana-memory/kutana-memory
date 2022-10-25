@@ -1,0 +1,318 @@
+.nano
+    height: 0px
+    width: 0px
+
+nav
+    position: sticky
+    display: flex
+    top: 0px
+    left: 0px
+    justify-content: space-between
+    align-items: center
+    background-color: #ffffff
+    border-bottom: 2px solid #dadce0
+    padding: 20px
+    z-index: 100
+
+    .heading
+        color: #5f6368
+        font-family: 'Poppins', sans-serif
+        font-size: 22px
+        padding: 0px 16px
+        font-weight: 500
+
+    span
+        display: flex
+        align-items: center
+
+        a
+            color: #5f6368
+            font-family: 'Poppins', sans-serif
+            padding: 0px 16px
+            font-weight: 500
+            cursor: pointer
+
+        img
+            width: 40px
+            border-radius: 50%
+
+.theme
+    margin: 40px
+    display: flex
+    flex-direction: column
+    align-items: center
+    font-family: 'Redressed', cursive
+    font-size: 58px
+    color: #5f6368
+
+    p
+        font-family: 'Poppins', sans-serif
+        font-size: 16px
+        color: #c4c4c4
+        margin: 10px
+
+.main-container
+    display: flex
+    justify-content: space-evenly
+    flex-wrap: wrap
+
+    .each-entry
+        position: relative
+        display: flex
+        flex-direction: column
+        margin: 40px
+        width: min-content
+
+        img
+            display: block
+            height: 400px
+
+        .img-bottom
+            font-family: 'Poppins', sans-serif
+            font-weight: 500
+            padding: 6px 0px
+            display: flex
+            width: 100%
+            text-align: center
+            justify-content: center
+
+            span
+                font-family: 'Poppins', sans-serif
+                font-weight: 500
+
+        .overlay
+            position: absolute
+            background: rgba(0, 0, 0, 0.74)
+            transition: .5s ease
+            width: 100%
+            height: 400px
+            opacity: 0
+            display: flex
+            justify-content: center
+            align-items: center
+
+            .unvote
+                display: flex
+                height: 100%
+                width: 100%
+                justify-content: center
+                align-items: center
+
+                color:  #c4c4c4
+                font-family: 'Poppins', sans-serif
+                font-weight: 500
+        
+        .overlay-expand
+            position: absolute
+            transition: .5s ease
+            width: 100%
+            height: 400px
+            opacity: 1
+
+        .expand-icon
+            position: absolute
+            right: 0px
+            margin: 10px
+            transition: .5s ease
+            opacity: 0
+            z-index: 50
+
+  
+        .overlay-top
+            position: absolute
+            background: linear-gradient(to bottom right, rgba(0,0,0,1) 0%, rgba(42,42,42,0) 25%, rgba(255,255,255,0) 100%)
+            transition: .5s ease
+            width: 100%
+            height: 400px
+            opacity: 1
+            display: flex
+            justify-content: space-between
+            align-items: flex-start
+
+            img
+                margin: 10px
+                width: 50px
+                height: 50px
+                z-index: 10
+            
+      
+        
+    .each-entry:hover .overlay
+        opacity: 1
+    
+    .each-entry:hover .expand-icon
+        opacity: 1
+        
+.upload-popup
+    position: fixed
+    z-index: 50
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 400px
+    padding: 20px
+    top: 50%
+    left: 50%
+    transform: translate(-50%,-50%)
+    background-color: #fffffffe
+    border-radius: 20px
+    box-shadow: 4px 4px 50px 8px rgba(199,199,199,0.52)
+
+    p.heading
+        color: #5f6368
+        font-family: 'Poppins', sans-serif
+        font-weight: 500
+
+    .upload-area
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 200px
+        height: 200px
+        flex-direction: column
+        border-radius: 20px
+        border: 2px dashed #b1b1b1
+        cursor: pointer
+
+        p
+            font-family: 'Poppins', sans-serif
+            text-align: center
+
+        img
+            max-width: 200px
+            max-height: 200px
+            border-radius: 10px
+
+    .btn
+        font-family: 'Poppins', sans-serif
+        color: #ffffff
+        background-color: #5f6368
+        padding: 8px 20px
+        margin: 20px
+        border-radius: 8px
+        cursor: pointer
+    .cancel
+        background-color: #eeede8
+        color: #5f6368
+
+    input[type=file]
+        width: 0px
+        height: 0px
+
+    input[type=text]
+        font-family: 'Poppins', sans-serif
+        margin: 20px
+        height: 30px
+        text-align: center
+        border-radius: 10px
+        background-color: #eeede8
+        color: #777777
+
+    .done
+        width: 100%
+        display: flex
+        justify-content: space-around
+
+.expanded
+    position: fixed
+    display: flex
+    font-family: 'Poppins', sans-serif
+    align-items: center
+    justify-content: space-evenly
+    width: 90%
+    color: #5f6368
+    height: 90%
+    z-index: 150
+    padding: 20px
+    opacity: 1
+    top: 50%
+    transition: 1.8s ease-in-out
+    left: 50%
+    transform: translate(-50%,-50%)
+    background-color: #fffffffe
+    border-radius: 20px
+    box-shadow: 4px 4px 50px 18px rgba(199,199,199,0.92)
+
+    img
+        max-width: 80%
+        max-height: 90%
+        border-radius: 10px
+
+    .done
+        display: flex
+        flex-direction: column
+        justify-content: space-around
+
+    
+    .btn
+        font-family: 'Poppins', sans-serif
+        color: #ffffff
+        background-color: #5f6368
+        padding: 8px 20px
+        margin: 20px
+        border-radius: 8px
+        cursor: pointer
+    .cancel
+        background-color: #eeede8
+        color: #5f6368
+
+    span
+        img
+            padding: 4px
+    
+    p
+        font-weight: 500
+        text-align: center
+
+.selected-vote
+    border: solid
+    padding: 4px
+    border-color:  #5f6368
+
+
+.results
+    position: fixed
+    display: flex
+    font-family: 'Poppins', sans-serif
+    align-items: center
+    align-content: center
+    justify-content: space-evenly
+    width: 90%
+    color: #5f6368
+    height: 90%
+    z-index: 150
+    padding: 20px
+    opacity: 1
+    top: 50%
+    transition: 1.8s ease-in-out
+    left: 50%
+    transform: translate(-50%,-50%)
+    background-color: #fffffffe
+    border-radius: 20px
+    box-shadow: 4px 4px 50px 18px rgba(199,199,199,0.92)
+
+    img
+        max-width: 400px
+        max-height: 400px
+    
+    .svg
+        margin: 20px
+        width: 50px
+        height: 50px
+        
+    
+    div
+        display: flex
+        flex-direction: column
+        align-items: center
+    
+    .btn
+        position: absolute
+        bottom: 20px
+        font-family: 'Poppins', sans-serif
+        color: #ffffff
+        background-color: #5f6368
+        padding: 8px 20px
+        margin: 20px
+        border-radius: 8px
+        cursor: pointer

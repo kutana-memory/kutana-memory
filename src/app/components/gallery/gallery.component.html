@@ -1,0 +1,142 @@
+<nav>
+    <span class="heading">
+        Showcase
+    </span>
+    <span>
+        <a> {{getRemainingVotes()}} {{(getRemainingVotes()==2||getRemainingVotes()==3)?"Votes":"Vote"}} Left</a>
+        <a (click)="resultsVisible=true">Results</a>
+        <a (click)="onUpload()">Upload</a>
+        <a (click)="logout()">Logout</a>
+        <a>{{authService.currentUser?.displayName}}</a>
+        <img src={{authService.currentUser?.photoURL}} alt="">
+    </span>
+</nav>
+
+<div class="theme">
+    {{authService.config?.theme}}
+    <p>{{authService.config?.week}}</p>
+</div>
+
+<div class="main-container">
+
+    <div class="each-entry" *ngFor="let entry of photoEntries | async">
+        <img src={{entry.photoUrl}}>
+
+        <div *ngIf="isVoted(entry.id)" class="overlay-top">
+            <img *ngIf="authService.userData?.first==entry.id" src="assets\medal1.svg">
+            <img *ngIf="authService.userData?.second==entry.id" src="assets\medal2.svg">
+            <img *ngIf="authService.userData?.third==entry.id" src="assets\medal3.svg">
+
+        </div>
+        <div class="overlay-expand">
+            <img (click)="expandImage(entry)" class="expand-icon" src="assets\expand.svg"
+                style="height: 30px; width: 30px;">
+        </div>
+        <div id="overlay" class="overlay">
+
+
+
+            <img *ngIf="authService.userData?.first==''&&!isVoted(entry.id)" src="assets\medal1.svg"
+                style="margin: 10px; width: 50px; height: 50px" (click)="onVoted(1,entry)">
+            <img *ngIf="authService.userData?.second==''&&!isVoted(entry.id)" src="assets\medal2.svg"
+                style="margin: 10px; width: 50px; height: 50px" (click)="onVoted(2,entry)">
+            <img *ngIf="authService.userData?.third==''&&!isVoted(entry.id)" src="assets\medal3.svg"
+                style="margin: 10px; width: 50px; height: 50px" (click)="onVoted(3,entry)">
+
+
+            <span class="unvote" *ngIf="isVoted(entry.id)" (click)="onLike(entry)"><i class="fas fa-minus-circle"
+                    style="margin: 10px;"></i> Tap to remove your vote </span>
+
+            <span class="unvote" *ngIf="getRemainingVotes()==0&&!isVoted(entry.id)">No votes left</span>
+
+        </div>
+        <span class="img-bottom">
+            {{entry.caption}}
+            <!-- <span>
+                <img *ngIf="authService.userData?.first==entry.id" src="assets\third.svg" style="margin: 10px;">
+
+                <i *ngIf="authService.userData?.first==entry.id" class="fas fa-heart gold"
+                    style='padding-right:8px'></i>
+                <i *ngIf="authService.userData?.second==entry.id" class="fas fa-heart silver"
+                    style='padding-right:8px'></i>
+                <i *ngIf="authService.userData?.third==entry.id" class="fas fa-heart bronze"
+                    style='padding-right:8px'></i>
+                <span *ngIf="authService.config?.resultsPublished">
+                    {{entry.score}}
+                </span>
+            </span> -->
+        </span>
+    </div>
+
+</div>
+
+<div *ngIf='popUpVisible' class="upload-popup">
+    <p class="heading">Upload your photo</p>
+    <input class="input-file" type="file" (change)="onFileSelected($event)">
+    <input [(ngModel)]='caption' type="text" name="caption" placeholder="Caption" autocomplete="off" required>
+    <div *ngIf="!uploading" (click)="chooseFile()" class="upload-area">
+        <p *ngIf="!imgSelected">Choose a file to<br>upload</p>
+        <img id="preview" src="#" class="nano">
+    </div>
+    <div *ngIf="uploading" (click)="chooseFile()" class="upload-area">
+        <p>Uploading...</p>
+    </div>
+    <span class="done">
+        <button (click)="uploadToFireStorage()" class="btn">Upload</button>
+        <button (click)="popUpVisible=false" class="btn cancel">Cancel</button>
+    </span>
+</div>
+
+<div *ngIf="expanded" class="expanded">
+
+    <img src={{selectedImage.photoUrl}} alt="">
+    <span class="done">
+        <!-- <p>Pick your vote:</p> -->
+        <!-- <span>
+            <img id="first" (click)="onVoted(1,selectedImage)" src="assets\medal1.svg"
+                style="margin: 10px; width: 50px; height: 50px">
+            <img id="second" (click)="onVoted(2,selectedImage)" src="assets\medal2.svg"
+                style="margin: 10px; width: 50px; height: 50px">
+            <img id="third" (click)="onVoted(3,selectedImage)" src="assets\medal3.svg"
+                style="margin: 10px; width: 50px; height: 50px">
+        </span> -->
+        <button (click)="download()" class="btn">Download</button>
+        <button (click)="expanded=false" class="btn cancel">Cancel</button>
+    </span>
+
+</div>
+
+
+<div *ngIf="resultsVisible" class="results">
+<!-- Need to automate this one day! -->
+    <div>
+        <img class="svg" src="assets\medal1.svg">
+
+        <img
+            src="https://firebasestorage.googleapis.com/v0/b/photocontest-7d8c2.appspot.com/o/entries%2F1660903504888?alt=media&token=41e09b8f-f2b7-491d-9305-a9fc581ccabf">
+        <p>. weep not for roads untraveled .</p>
+        <p>Richard Joy</p>
+    </div>
+
+    <div>
+        <img class="svg" src="assets\medal2.svg">
+
+        <img
+            src="https://firebasestorage.googleapis.com/v0/b/photocontest-7d8c2.appspot.com/o/entries%2F1661507030163?alt=media&token=b56d5c62-1747-439c-9baa-d4a240919e3a">
+        <p>Once in while, Stop and look back.</p>
+        <p>Isham Mohamed</p>
+    </div>
+
+    <div>
+        <img class="svg" src="assets\medal3.svg">
+
+        <img
+            src="https://firebasestorage.googleapis.com/v0/b/photocontest-7d8c2.appspot.com/o/entries%2F1663305579389?alt=media&token=a93bf377-31d2-431b-9cbb-f41e1b793793">
+        <p>Mornings in Manimala</p>
+        <p>Jitin</p>
+    </div>
+
+    <button (click)="resultsVisible=false" class="btn cancel">Cancel</button>
+
+
+</div>
